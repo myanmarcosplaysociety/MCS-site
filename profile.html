@@ -63,37 +63,61 @@
           <li><a href="gallery.html">Gallery</a></li>
           <li><a href="login.html">Login</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="admin.html">Admin</a></li>
         </ul>
       </nav>
     </div>
   </header>
   <main>
-    <section>
-      <div class="profile-card">
-        <img src="assets/sample-photos/avatar1.jpg" alt="User Avatar" class="profile-avatar">
-        <h2>Jane Doe</h2>
-        <div class="profile-bio">
-          Cosplayer & Costume Designer<br>
-          Yangon, Myanmar
+    <!-- Not Logged In -->
+    <div id="not-logged-in" style="display: none;">
+      <section>
+        <div class="profile-card">
+          <h2>Please Log In</h2>
+          <p>You need to be logged in to view your profile.</p>
+          <a href="login.html" class="btn-primary">Go to Login</a>
         </div>
-        <div class="profile-section">
-          <h4>Interests</h4>
-          <ul>
-            <li>Anime Cosplay</li>
-            <li>Game Characters</li>
-            <li>Props Crafting</li>
-          </ul>
+      </section>
+    </div>
+
+    <!-- User Profile -->
+    <div id="user-profile" style="display: none;">
+      <section>
+        <div class="profile-card">
+          <img id="user-avatar" src="assets/sample-photos/avatar1.jpg" alt="User Avatar" class="profile-avatar">
+          <h2 id="user-name">Loading...</h2>
+          <div class="profile-bio">
+            <span id="user-email">Loading...</span><br>
+            <span id="user-location">Cosplay Community Member</span>
+          </div>
+          <div class="profile-section">
+            <h4>Account Info</h4>
+            <ul>
+              <li><strong>Login Method:</strong> <span id="login-method">-</span></li>
+              <li><strong>Member Since:</strong> <span id="member-since">-</span></li>
+              <li><strong>Last Login:</strong> <span id="last-login">-</span></li>
+            </ul>
+          </div>
+          <div class="profile-section">
+            <h4>Interests</h4>
+            <ul>
+              <li>Anime Cosplay</li>
+              <li>Game Characters</li>
+              <li>Props Crafting</li>
+            </ul>
+          </div>
+          <div class="profile-section">
+            <h4>Recent Events</h4>
+            <ul>
+              <li>Welcome to MCS Community!</li>
+              <li>Stay tuned for upcoming events</li>
+            </ul>
+          </div>
+          <button class="btn-primary edit-profile-btn" onclick="alert('Edit profile coming soon!')">Edit Profile</button>
+          <button class="btn-secondary" onclick="logout()" style="margin-left: 8px;">Logout</button>
         </div>
-        <div class="profile-section">
-          <h4>Recent Events</h4>
-          <ul>
-            <li>Yangon Cosplay Mega Fest 2024</li>
-            <li>Mandalay Cosplay Parade 2023</li>
-          </ul>
-        </div>
-        <button class="btn-primary edit-profile-btn" onclick="alert('Edit profile coming soon!')">Edit Profile</button>
-      </div>
-    </section>
+      </section>
+    </div>
   </main>
   <footer>
     <div class="container footer-flex">
@@ -108,5 +132,41 @@
     </div>
   </footer>
   <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const currentUser = JSON.parse(sessionStorage.getItem('currentUser') || 'null');
+      
+      if (!currentUser) {
+        document.getElementById('not-logged-in').style.display = 'block';
+        return;
+      }
+      
+      // Show user profile
+      document.getElementById('user-profile').style.display = 'block';
+      
+      // Populate user data
+      document.getElementById('user-name').textContent = currentUser.name || 'Anonymous User';
+      document.getElementById('user-email').textContent = currentUser.email || 'No email';
+      document.getElementById('login-method').textContent = 
+        currentUser.loginMethod === 'gmail' ? '📧 Gmail' : '🔑 Traditional';
+      
+      // Set avatar if available
+      if (currentUser.picture) {
+        document.getElementById('user-avatar').src = currentUser.picture;
+      }
+      
+      // Format dates
+      if (currentUser.signupTime) {
+        const signupDate = new Date(currentUser.signupTime).toLocaleDateString();
+        document.getElementById('member-since').textContent = signupDate;
+      }
+      
+      if (currentUser.loginTime) {
+        const loginDate = new Date(currentUser.loginTime).toLocaleString();
+        document.getElementById('last-login').textContent = loginDate;
+      }
+    });
+  </script>
 </body>
 </html>
