@@ -44,7 +44,7 @@ function isAdminUser(user) {
     const adminEmails = [
         'admin@mcs.org',
         'admin@gmail.com',
-        'myanmarcosplaysociety@gmail.com'
+        'kylros2018@gmail.com'
     ];
     
     return adminEmails.includes(user.email) || user.isAdmin === true;
