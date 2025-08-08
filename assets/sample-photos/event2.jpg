@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#EC4899;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="400" height="300" fill="url(#bg2)"/>
+  
+  <!-- Parade illustration -->
+  <g fill="white" opacity="0.8">
+    <!-- Stage or platform -->
+    <rect x="50" y="200" width="300" height="20" rx="10" fill="rgba(255,255,255,0.3)"/>
+    
+    <!-- Figures in parade -->
+    <circle cx="120" cy="180" r="12"/>
+    <circle cx="200" cy="175" r="12"/>
+    <circle cx="280" cy="180" r="12"/>
+    
+    <rect x="108" y="192" width="24" height="35" rx="4"/>
+    <rect x="188" y="187" width="24" height="35" rx="4"/>
+    <rect x="268" y="192" width="24" height="35" rx="4"/>
+    
+    <!-- Decorative elements -->
+    <polygon points="200,60 210,90 240,90 220,110 230,140 200,125 170,140 180,110 160,90 190,90" fill="rgba(255,255,255,0.6)"/>
+  </g>
+  
+  <text x="200" y="260" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="white">Cosplay Parade</text>
+  <text x="200" y="280" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="rgba(255,255,255,0.9)">Street Performance</text>
+</svg>

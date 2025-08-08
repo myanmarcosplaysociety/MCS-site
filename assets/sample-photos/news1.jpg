@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200">
+  <defs>
+    <linearGradient id="newsGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6B46C1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#EC4899;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="400" height="200" fill="url(#newsGrad1)"/>
+  
+  <!-- Announcement banner design -->
+  <g fill="white" opacity="0.9">
+    <!-- Megaphone/announcement icon -->
+    <path d="M50 100 L80 80 L120 80 L120 120 L80 120 Z" fill="rgba(255,255,255,0.8)"/>
+    <circle cx="125" cy="100" r="15" fill="rgba(255,255,255,0.6)"/>
+    
+    <!-- Sound waves -->
+    <path d="M140 85 Q155 100 140 115" stroke="white" stroke-width="3" fill="none" opacity="0.7"/>
+    <path d="M150 80 Q170 100 150 120" stroke="white" stroke-width="2" fill="none" opacity="0.5"/>
+    <path d="M160 75 Q185 100 160 125" stroke="white" stroke-width="2" fill="none" opacity="0.3"/>
+    
+    <!-- Star decorations -->
+    <polygon points="250,40 255,50 265,50 257,57 260,67 250,62 240,67 243,57 235,50 245,50" fill="rgba(255,255,255,0.8)"/>
+    <polygon points="320,60 325,70 335,70 327,77 330,87 320,82 310,87 313,77 305,70 315,70" fill="rgba(255,255,255,0.6)"/>
+    <polygon points="300,140 305,150 315,150 307,157 310,167 300,162 290,167 293,157 285,150 295,150" fill="rgba(255,255,255,0.7)"/>
+  </g>
+  
+  <text x="200" y="130" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle" fill="white">MEGA FEST</text>
+  <text x="200" y="150" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" fill="rgba(255,255,255,0.9)">BIG ANNOUNCEMENT</text>
+</svg>

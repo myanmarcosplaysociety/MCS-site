@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Gallery | Myanmar Cosplay Society</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="assets/409741896_326847926966167_8324030770226370805_n.jpg">
+  <style>
+    .gallery-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 32px;
+    }
+    .gallery-item {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px #0001;
+      padding: 12px;
+      text-align: center;
+      max-width: 220px;
+      width: 100%;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .gallery-item img {
+      width: 180px;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+    .gallery-item .caption {
+      font-size: 1rem;
+      color: #333;
+    }
+    @media (max-width: 600px) {
+      .gallery-item img {
+        width: 100px;
+        height: 130px;
+      }
+      .gallery-grid {
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-flex">
+      <img src="assets/409741896_326847926966167_8324030770226370805_n.jpg" alt="MCS Logo" class="logo">
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="gallery.html" class="active">Gallery</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="admin.html">Admin</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="container">
+      <h1>Cosplay Photo Gallery</h1>
+      <p>Enjoy highlights from our recent events! Want your photo featured here? <a href="contact.html" class="btn-secondary">Contact Us</a></p>
+      <div class="gallery-grid" id="gallery-grid">
+        <!-- Photos will be populated by JS -->
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="container footer-flex">
+      <div>
+        <img src="assets/409741896_326847926966167_8324030770226370805_n.jpg" alt="MCS Logo" class="footer-logo">
+        <span>© 2025 Myanmar Cosplay Society</span>
+      </div>
+      <div>
+        <a href="https://www.facebook.com/MCSmm2023" target="_blank">Facebook</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+  <script src="js/app.js"></script>
+  <script>
+    // Example photo data
+    const gallery = [
+      { img: "assets/sample-photos/gallery1.jpg", caption: "Champion Cosplayer - Mega Fest 2024" },
+      { img: "assets/sample-photos/gallery2.jpg", caption: "Group Cosplay - Mandalay Parade" },
+      { img: "assets/sample-photos/gallery3.jpg", caption: "Anime Night - Naypyidaw" },
+      { img: "assets/sample-photos/event1.jpg", caption: "Judges Panel" },
+      { img: "assets/sample-photos/event2.jpg", caption: "Cosplay Parade" },
+      { img: "assets/sample-photos/event3.jpg", caption: "Backstage Moments" }
+    ];
+    const grid = document.getElementById('gallery-grid');
+    gallery.forEach(photo => {
+      grid.innerHTML += `
+        <div class="gallery-item">
+          <img src="${photo.img}" alt="${photo.caption}">
+          <div class="caption">${photo.caption}</div>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>

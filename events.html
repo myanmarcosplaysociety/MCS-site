@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Events | Myanmar Cosplay Society</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="assets/409741896_326847926966167_8324030770226370805_n.jpg">
+</head>
+<body>
+  <header>
+    <div class="container nav-flex">
+      <img src="assets/409741896_326847926966167_8324030770226370805_n.jpg" alt="MCS Logo" class="logo">
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="events.html" class="active">Events</a></li>
+          <li><a href="news.html">News</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="login.html">Login</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="admin.html">Admin</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="container">
+      <h1>Upcoming Cosplay Events</h1>
+      <div class="event-list" id="event-list">
+        <!-- Events will be populated by JS -->
+      </div>
+      <p style="margin-top:30px;">
+        Want to host an event with us? <a href="contact.html" class="btn-secondary">Contact our team</a>
+      </p>
+    </section>
+  </main>
+  <footer>
+    <div class="container footer-flex">
+      <div>
+        <img src="assets/409741896_326847926966167_8324030770226370805_n.jpg" alt="MCS Logo" class="footer-logo">
+        <span>© 2025 Myanmar Cosplay Society</span>
+      </div>
+      <div>
+        <a href="https://www.facebook.com/MCSmm2023" target="_blank">Facebook</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+  <script src="js/app.js"></script>
+  <script>
+    // Example event data
+    const events = [
+      {
+        title: "Yangon Cosplay Mega Fest",
+        date: "2025-09-10",
+        location: "Yangon Convention Center",
+        desc: "The biggest annual cosplay gathering in Myanmar. Competitions, workshops, and special guests!",
+        tickets: "Available",
+        photo: "assets/sample-photos/event1.jpg"
+      },
+      {
+        title: "Mandalay Cosplay Parade",
+        date: "2025-10-18",
+        location: "Mandalay Palace Grounds",
+        desc: "Outdoor cosplay parade and contest with prizes for best costumes.",
+        tickets: "Free Entry",
+        photo: "assets/sample-photos/event2.jpg"
+      },
+      {
+        title: "Anime & Game Expo",
+        date: "2025-12-05",
+        location: "Naypyidaw Expo Hall",
+        desc: "Meet your favorite anime, manga, and game cosplayers. Merch booths, panels, and more.",
+        tickets: "Coming Soon",
+        photo: "assets/sample-photos/event3.jpg"
+      }
+    ];
+
+    const eventList = document.getElementById('event-list');
+    events.forEach(ev => {
+      eventList.innerHTML += `
+        <div class="highlight-card" style="max-width:400px; margin:24px auto;">
+          <img src="${ev.photo}" alt="${ev.title}" style="height:180px;">
+          <h3>${ev.title}</h3>
+          <p><b>Date:</b> ${ev.date}</p>
+          <p><b>Location:</b> ${ev.location}</p>
+          <p>${ev.desc}</p>
+          <p><b>Tickets:</b> ${ev.tickets}</p>
+          <a href="#" class="btn-primary" onclick="alert('Online registration coming soon!');return false;">Register</a>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>
