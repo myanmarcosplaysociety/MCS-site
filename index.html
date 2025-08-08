@@ -3,37 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Myanmar Cosplay Society</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Myanmar Cosplay Society - MCS Official Website</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="assets/logo.png">
 </head>
 <body>
     <header>
-        <h1>Myanmar Cosplay Society</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="news.html">News</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="community.html">Community</a></li>
-            </ul>
-        </nav>
+        <div class="container nav-flex">
+            <img src="assets/logo.png" alt="MCS Logo" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
     <main>
         <section class="hero">
             <h2>Welcome to the Myanmar Cosplay Society!</h2>
-            <p>Your hub for cosplay events, news, and community in Myanmar.</p>
+            <p>Your hub for cosplay events, news, and community in Myanmar. Join our vibrant community of cosplayers, creators, and fans!</p>
+            <div class="cta-center">
+                <a href="events.html" class="btn-primary">Explore Events</a>
+                <a href="gallery.html" class="btn-secondary">View Gallery</a>
+            </div>
         </section>
-        <section>
-            <h3>About Us</h3>
-            <p>
-                The Myanmar Cosplay Society (MCS) unites cosplayers, fans, and creators across Myanmar.
-                Join us for events, share your work, and connect with the community!
-            </p>
+        
+        <section class="container">
+            <div class="highlight-card" style="max-width: 800px;">
+                <h3>About Myanmar Cosplay Society</h3>
+                <p>
+                    The Myanmar Cosplay Society (MCS) unites cosplayers, fans, and creators across Myanmar.
+                    We organize exciting events, competitions, workshops, and community gatherings that celebrate
+                    the art of cosplay and the love for anime, manga, games, and pop culture.
+                </p>
+                <p>
+                    Whether you're a seasoned cosplayer or just starting your journey, MCS welcomes everyone
+                    to join our inclusive community where creativity knows no bounds!
+                </p>
+                <div class="cta-center">
+                    <a href="https://www.facebook.com/MCSmm2023" target="_blank" class="btn-primary">Join Our Facebook Community</a>
+                    <a href="contact.html" class="btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <h2 class="text-center">What We Offer</h2>
+            <div class="event-list">
+                <div class="highlight-card">
+                    <h3>🎭 Cosplay Events</h3>
+                    <p>Regular competitions, contests, and showcases where cosplayers can display their amazing creations and win exciting prizes.</p>
+                    <div class="cta-center">
+                        <a href="events.html" class="btn-secondary">View Events</a>
+                    </div>
+                </div>
+                
+                <div class="highlight-card">
+                    <h3>📸 Photo Sessions</h3>
+                    <p>Professional photography sessions and community photoshoots to capture your best cosplay moments.</p>
+                    <div class="cta-center">
+                        <a href="gallery.html" class="btn-secondary">Browse Gallery</a>
+                    </div>
+                </div>
+                
+                <div class="highlight-card">
+                    <h3>🤝 Community Support</h3>
+                    <p>Connect with fellow cosplayers, share tips, get advice, and build lasting friendships in our supportive community.</p>
+                    <div class="cta-center">
+                        <a href="contact.html" class="btn-secondary">Join Us</a>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
+    
     <footer>
-        <p>&copy; 2025 Myanmar Cosplay Society. All rights reserved.</p>
+        <div class="container footer-flex">
+            <div>
+                <img src="assets/logo.png" alt="MCS Logo" class="footer-logo">
+                <span>&copy; 2025 Myanmar Cosplay Society</span>
+            </div>
+            <div>
+                <a href="https://www.facebook.com/MCSmm2023" target="_blank">Facebook</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
     </footer>
+    
+    <script src="js/app.js"></script>
+    <script>
+        // Initialize homepage
+        MCS.initPage('home');
+    </script>
 </body>
 </html>
