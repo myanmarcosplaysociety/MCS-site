@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Gallery | Myanmar Cosplay Society</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="assets/logo.png">
+  <link rel="icon" href="assets/logo.svg">
   <style>
     .gallery-grid {
       display: flex;
@@ -56,7 +56,7 @@
 <body>
   <header>
     <div class="container nav-flex">
-      <img src="assets/logo.png" alt="MCS Logo" class="logo">
+      <img src="assets/logo.svg" alt="MCS Logo" class="logo">
       <nav>
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -72,7 +72,10 @@
   <main>
     <section class="container">
       <h1>Cosplay Photo Gallery</h1>
-      <p>Enjoy highlights from our recent events! Want your photo featured here? <a href="contact.html" class="btn-secondary">Contact Us</a></p>
+      <p>Enjoy highlights from our recent MCS events and community gatherings! 
+      <strong>Want your photo featured here?</strong> Share it on our 
+      <a href="https://www.facebook.com/MCSmm2023" target="_blank" style="color: #e74c3c; font-weight: bold;">Facebook page</a> 
+      or <a href="contact.html" class="btn-secondary" style="display: inline; padding: 4px 8px; font-size: 0.9rem;">contact our team</a></p>
       <div class="gallery-grid" id="gallery-grid">
         <!-- Photos will be populated by JS -->
       </div>
@@ -81,7 +84,7 @@
   <footer>
     <div class="container footer-flex">
       <div>
-        <img src="assets/logo.png" alt="MCS Logo" class="footer-logo">
+        <img src="assets/logo.svg" alt="MCS Logo" class="footer-logo">
         <span>© 2025 Myanmar Cosplay Society</span>
       </div>
       <div>
@@ -92,14 +95,14 @@
   </footer>
   <script src="js/app.js"></script>
   <script>
-    // Example photo data
+    // Updated gallery data for Myanmar Cosplay Society
     const gallery = [
-      { img: "assets/sample-photos/gallery1.jpg", caption: "Champion Cosplayer - Mega Fest 2024" },
-      { img: "assets/sample-photos/gallery2.jpg", caption: "Group Cosplay - Mandalay Parade" },
-      { img: "assets/sample-photos/gallery3.jpg", caption: "Anime Night - Naypyidaw" },
-      { img: "assets/sample-photos/event1.jpg", caption: "Judges Panel" },
-      { img: "assets/sample-photos/event2.jpg", caption: "Cosplay Parade" },
-      { img: "assets/sample-photos/event3.jpg", caption: "Backstage Moments" }
+      { img: "assets/sample-photos/gallery1.svg", caption: "Best Costume Winner - MCS Annual Convention 2024" },
+      { img: "assets/sample-photos/gallery2.svg", caption: "Group Cosplay Excellence - Yangon Summer Meet" },
+      { img: "assets/sample-photos/gallery3.svg", caption: "Traditional Myanmar x Anime Fusion - Mandalay Festival" },
+      { img: "assets/sample-photos/event1.svg", caption: "MCS Community Judges Panel" },
+      { img: "assets/sample-photos/event2.svg", caption: "Cosplay Parade - Mandalay Cultural Center" },
+      { img: "assets/sample-photos/event3.svg", caption: "Behind the Scenes - Convention Preparation" }
     ];
     const grid = document.getElementById('gallery-grid');
     gallery.forEach(photo => {
