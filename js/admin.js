@@ -176,9 +176,15 @@ function filterRegistrations() {
     filteredRegistrations = registrationData.filter(reg => {
         return !searchTerm || 
             (reg.eventTitle && reg.eventTitle.toLowerCase().includes(searchTerm)) ||
+            (reg.fullName && reg.fullName.toLowerCase().includes(searchTerm)) ||
             (reg.userName && reg.userName.toLowerCase().includes(searchTerm)) ||
+            (reg.email && reg.email.toLowerCase().includes(searchTerm)) ||
             (reg.userEmail && reg.userEmail.toLowerCase().includes(searchTerm)) ||
-            (reg.contactNumber && reg.contactNumber.toLowerCase().includes(searchTerm));
+            (reg.contactNumber && reg.contactNumber.toLowerCase().includes(searchTerm)) ||
+            (reg.participantType && reg.participantType.toLowerCase().includes(searchTerm)) ||
+            (reg.characterName && reg.characterName.toLowerCase().includes(searchTerm)) ||
+            (reg.characterSeries && reg.characterSeries.toLowerCase().includes(searchTerm)) ||
+            (reg.facebookProfile && reg.facebookProfile.toLowerCase().includes(searchTerm));
     });
     
     displayRegistrationData();
@@ -332,7 +338,7 @@ function displayRegistrationData() {
     if (filteredRegistrations.length === 0) {
         tbody.innerHTML = `
             <tr>
-                <td colspan="6" style="text-align: center; padding: 40px; color: #666;">
+                <td colspan="9" style="text-align: center; padding: 40px; color: #666;">
                     No event registrations yet
                 </td>
             </tr>
@@ -347,11 +353,37 @@ function displayRegistrationData() {
         const regTime = new Date(registration.registrationTime);
         const timeString = regTime.toLocaleString();
         
+        // Get participant type with appropriate emoji
+        const participantType = registration.participantType || 'unknown';
+        const typeDisplay = participantType === 'cosplayer' ? '🎭 Cosplayer' : 
+                           participantType === 'guest' ? '👤 Guest' : '❓ Unknown';
+        
+        // Handle character name (for cosplayers)
+        const characterName = registration.characterName || '';
+        const characterSeries = registration.characterSeries || '';
+        const characterDisplay = characterName ? 
+            `${characterName}${characterSeries ? ` (${characterSeries})` : ''}` : 
+            'N/A';
+        
+        // Handle Facebook profile
+        const facebookProfile = registration.facebookProfile || 'Not provided';
+        
+        // Use both new and old data formats for backward compatibility
+        const displayName = registration.fullName || registration.userName || 'Unknown';
+        const displayEmail = registration.email || registration.userEmail || 'Unknown';
+        
         row.innerHTML = `
             <td><strong>${escapeHtml(registration.eventTitle || 'Unknown Event')}</strong></td>
-            <td>${escapeHtml(registration.userName || 'Unknown')}</td>
-            <td>${escapeHtml(registration.userEmail || 'Unknown')}</td>
+            <td>${escapeHtml(displayName)}</td>
+            <td>${escapeHtml(displayEmail)}</td>
             <td>${escapeHtml(registration.contactNumber || 'Not provided')}</td>
+            <td>
+                <span class="method-badge ${participantType === 'cosplayer' ? 'method-gmail' : 'method-traditional'}">
+                    ${typeDisplay}
+                </span>
+            </td>
+            <td>${escapeHtml(characterDisplay)}</td>
+            <td>${escapeHtml(facebookProfile)}</td>
             <td>${timeString}</td>
             <td>
                 <span class="method-badge method-traditional">
@@ -371,14 +403,19 @@ function exportRegistrations() {
     }
     
     // Create CSV content
-    const headers = ['Event', 'Name', 'Email', 'Contact Number', 'Registration Time', 'Status'];
+    const headers = ['Event', 'Name', 'Email', 'Contact Number', 'Participant Type', 'Character Name', 'Character Series', 'Facebook Profile', 'Additional Notes', 'Registration Time', 'Status'];
     const csvContent = [
         headers.join(','),
         ...filteredRegistrations.map(reg => [
             `"${(reg.eventTitle || '').replace(/"/g, '""')}"`,
-            `"${(reg.userName || '').replace(/"/g, '""')}"`,
-            `"${(reg.userEmail || '').replace(/"/g, '""')}"`,
+            `"${(reg.fullName || reg.userName || '').replace(/"/g, '""')}"`,
+            `"${(reg.email || reg.userEmail || '').replace(/"/g, '""')}"`,
             `"${(reg.contactNumber || '').replace(/"/g, '""')}"`,
+            `"${(reg.participantType || '').replace(/"/g, '""')}"`,
+            `"${(reg.characterName || '').replace(/"/g, '""')}"`,
+            `"${(reg.characterSeries || '').replace(/"/g, '""')}"`,
+            `"${(reg.facebookProfile || '').replace(/"/g, '""')}"`,
+            `"${(reg.additionalNotes || '').replace(/"/g, '""')}"`,
             `"${reg.registrationTime || ''}"`,
             `"${reg.status || 'Registered'}"`
         ].join(','))

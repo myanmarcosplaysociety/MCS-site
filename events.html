@@ -85,45 +85,10 @@
           <p><b>Location:</b> ${ev.location}</p>
           <p>${ev.desc}</p>
           <p><b>Tickets:</b> ${ev.tickets}</p>
-          <a href="#" class="btn-primary" onclick="registerForEvent('${ev.title}');return false;">Register</a>
+          <a href="register.html?event=${encodeURIComponent(ev.title)}" class="btn-primary">Register</a>
         </div>
       `;
     });
-
-    // Event registration function
-    function registerForEvent(eventTitle) {
-      // Check if user is logged in
-      const currentUser = JSON.parse(sessionStorage.getItem('currentUser') || 'null');
-      
-      if (!currentUser) {
-        alert('Please log in to register for events.');
-        window.location.href = 'login.html';
-        return;
-      }
-
-      // Create a simple registration form in a modal-like dialog
-      const registration = prompt(`Register for: ${eventTitle}\n\nPlease enter your contact number:`);
-      
-      if (registration && registration.trim()) {
-        // Store registration data
-        const registrations = JSON.parse(localStorage.getItem('mcs_event_registrations') || '[]');
-        
-        const newRegistration = {
-          id: 'reg_' + Date.now(),
-          eventTitle: eventTitle,
-          userName: currentUser.name,
-          userEmail: currentUser.email,
-          contactNumber: registration.trim(),
-          registrationTime: new Date().toISOString(),
-          status: 'registered'
-        };
-        
-        registrations.push(newRegistration);
-        localStorage.setItem('mcs_event_registrations', JSON.stringify(registrations));
-        
-        alert(`Registration successful for ${eventTitle}!\nWe will contact you at ${registration.trim()}`);
-      }
-    }
   </script>
 </body>
 </html>
