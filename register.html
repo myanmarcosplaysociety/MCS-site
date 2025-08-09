@@ -141,7 +141,7 @@
           <li><a href="events.html">Events</a></li>
           <li><a href="gallery.html">Gallery</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <li><a href="login.html" class="login-link">Login</a></li>
+          <li><a href="login.html" class="login-link">Admin Login</a></li>
         </ul>
       </nav>
     </div>
@@ -285,13 +285,6 @@
 
       cosplayerRadio.addEventListener('change', toggleCharacterFields);
       guestRadio.addEventListener('change', toggleCharacterFields);
-
-      // Pre-fill user information if logged in
-      const currentUser = JSON.parse(sessionStorage.getItem('currentUser') || 'null');
-      if (currentUser) {
-        document.getElementById('full-name').value = currentUser.name || '';
-        document.getElementById('email').value = currentUser.email || '';
-      }
     });
 
     // Handle form submission
@@ -304,17 +297,6 @@
       // Disable button and show loading
       submitBtn.disabled = true;
       submitBtn.textContent = '⏳ Registering...';
-
-      // Check if user is logged in
-      const currentUser = JSON.parse(sessionStorage.getItem('currentUser') || 'null');
-      
-      if (!currentUser) {
-        alert('Please log in to register for events.');
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
-        window.location.href = 'login.html';
-        return;
-      }
 
       // Collect form data
       const formData = new FormData(this);
@@ -330,8 +312,8 @@
         characterSeries: formData.get('characterSeries'),
         additionalNotes: formData.get('additionalNotes'),
         registrationTime: new Date().toISOString(),
-        status: 'registered',
-        userId: currentUser.id
+        status: 'registered'
+        // Note: userId removed as registration no longer requires login
       };
 
       // Store registration data
@@ -341,7 +323,7 @@
 
       // Show success message
       setTimeout(() => {
-        alert(`🎉 Registration successful for ${eventTitle}!\n\nThank you, ${registrationData.fullName}! We will contact you at ${registrationData.contactNumber}.\n\nRedirecting to events page...`);
+        alert(`🎉 Congratulation! Registered successfully!\n\nThank you, ${registrationData.fullName}! We will contact you at ${registrationData.contactNumber}.\n\nRedirecting to events page...`);
         
         // Redirect back to events page
         window.location.href = 'events.html';
