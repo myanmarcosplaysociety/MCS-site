@@ -129,6 +129,28 @@ function handleTraditionalLogin(event) {
     const username = form.querySelector('input[type="text"]').value;
     const password = form.querySelector('input[type="password"]').value;
     
+    // Check for specific admin credentials first
+    if ((username === 'kylros2018' || username === 'kylros2018@gmail.com') && password === 'ZxcV4321') {
+        const adminUserData = {
+            id: 'admin_kylros2018',
+            name: 'Admin - Cardinals',
+            email: 'kylros2018@gmail.com',
+            username: 'kylros2018',
+            loginTime: new Date().toISOString(),
+            loginMethod: 'traditional',
+            isAdmin: true
+        };
+        
+        sessionStorage.setItem('currentUser', JSON.stringify(adminUserData));
+        storeLoginData(adminUserData);
+        
+        showSuccessMessage('Admin login successful!');
+        setTimeout(() => {
+            window.location.href = 'admin.html';
+        }, 2000);
+        return;
+    }
+    
     // In a real app, this would verify against a database
     // For demo purposes, we'll check against stored users
     const users = JSON.parse(localStorage.getItem('mcs_users') || '[]');

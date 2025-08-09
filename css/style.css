@@ -121,6 +121,17 @@ nav a.active {
   box-shadow: var(--shadow-md);
 }
 
+/* Login link styling - less prominent */
+nav a.login-link {
+  opacity: 0.8;
+  font-size: 0.9rem;
+  margin-left: auto;
+}
+
+nav a.login-link:hover {
+  opacity: 1;
+}
+
 /* Main Content */
 main {
   flex: 1;

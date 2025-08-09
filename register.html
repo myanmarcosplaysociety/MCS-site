@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Event Registration | Myanmar Cosplay Society</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="assets/logos/409741896_326847926966167_8324030770226370805_n.jpg">
+  <style>
+    .registration-container {
+      max-width: 600px;
+      margin: 48px auto;
+      padding: 0 20px;
+    }
+    
+    .registration-card {
+      background: white;
+      border-radius: var(--border-radius-lg);
+      box-shadow: var(--shadow-lg);
+      padding: 32px;
+      margin-bottom: 32px;
+    }
+    
+    .registration-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    
+    .registration-header h1 {
+      color: var(--primary-color);
+      margin-bottom: 8px;
+    }
+    
+    .registration-header p {
+      color: var(--text-secondary);
+    }
+    
+    .form-group {
+      margin-bottom: 24px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid var(--gray-200);
+      border-radius: var(--border-radius);
+      font-size: 14px;
+      transition: border-color 0.3s ease;
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+    
+    .form-group.hidden {
+      display: none;
+    }
+    
+    .radio-group {
+      display: flex;
+      gap: 24px;
+      margin-top: 8px;
+    }
+    
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .radio-option input[type="radio"] {
+      width: auto;
+      margin: 0;
+    }
+    
+    .btn-register {
+      width: 100%;
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+      color: white;
+      border: none;
+      padding: 14px 24px;
+      border-radius: var(--border-radius);
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    
+    .btn-register:hover {
+      transform: translateY(-2px);
+    }
+    
+    .btn-register:disabled {
+      background: var(--gray-300);
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .form-note {
+      background: var(--gray-100);
+      padding: 16px;
+      border-radius: var(--border-radius);
+      margin-bottom: 24px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+    
+    .event-info {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 20px;
+      border-radius: var(--border-radius);
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    
+    .required {
+      color: var(--error-color);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-flex">
+      <img src="assets/logos/409741896_326847926966167_8324030770226370805_n.jpg" alt="MCS Logo" class="logo">
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="login.html" class="login-link">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="registration-container">
+      <!-- Event Information -->
+      <div class="event-info" id="event-info">
+        <h2 id="event-title">Event Registration</h2>
+        <p id="event-details">Please fill out the form below to register for this event.</p>
+      </div>
+
+      <!-- Registration Form -->
+      <div class="registration-card">
+        <div class="registration-header">
+          <h1>🎭 Registration Form</h1>
+          <p>Join the Myanmar Cosplay Society community!</p>
+        </div>
+
+        <div class="form-note">
+          <strong>📝 Please Note:</strong> All fields marked with <span class="required">*</span> are required. 
+          Make sure your contact information is accurate so we can reach you.
+        </div>
+
+        <form id="registration-form">
+          <!-- Personal Information -->
+          <div class="form-group">
+            <label for="full-name">Full Name <span class="required">*</span></label>
+            <input type="text" id="full-name" name="fullName" required placeholder="Enter your full name">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address <span class="required">*</span></label>
+            <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+          </div>
+
+          <div class="form-group">
+            <label for="contact-number">Contact Number <span class="required">*</span></label>
+            <input type="tel" id="contact-number" name="contactNumber" required placeholder="+95 9XX XXX XXXX">
+          </div>
+
+          <div class="form-group">
+            <label for="facebook-profile">Facebook Profile Name</label>
+            <input type="text" id="facebook-profile" name="facebookProfile" placeholder="Your Facebook display name or profile URL">
+          </div>
+
+          <!-- Participant Type -->
+          <div class="form-group">
+            <label>Participant Type <span class="required">*</span></label>
+            <div class="radio-group">
+              <div class="radio-option">
+                <input type="radio" id="cosplayer" name="participantType" value="cosplayer" required>
+                <label for="cosplayer">🎭 Cosplayer</label>
+              </div>
+              <div class="radio-option">
+                <input type="radio" id="guest" name="participantType" value="guest" required>
+                <label for="guest">👤 Guest</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Character Information (shown only if Cosplayer is selected) -->
+          <div class="form-group hidden" id="character-group">
+            <label for="character-name">Character Name <span class="required">*</span></label>
+            <input type="text" id="character-name" name="characterName" placeholder="Name of the character you're cosplaying">
+          </div>
+
+          <div class="form-group hidden" id="character-series-group">
+            <label for="character-series">Character Series/Source</label>
+            <input type="text" id="character-series" name="characterSeries" placeholder="Anime, Game, Movie, etc. (optional)">
+          </div>
+
+          <!-- Additional Information -->
+          <div class="form-group">
+            <label for="additional-notes">Additional Notes</label>
+            <textarea id="additional-notes" name="additionalNotes" rows="3" placeholder="Any special requirements, dietary restrictions, or other information we should know..."></textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" class="btn-register" id="submit-btn">
+            ✨ Register for Event
+          </button>
+        </form>
+      </div>
+
+      <!-- Back to Events -->
+      <div style="text-align: center; margin-top: 24px;">
+        <a href="events.html" style="color: var(--primary-color); text-decoration: none;">
+          ← Back to Events
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-flex">
+      <div>
+        <img src="assets/logos/409741896_326847926966167_8324030770226370805_n.jpg" alt="MCS Logo" class="footer-logo">
+        <span>© 2025 Myanmar Cosplay Society</span>
+      </div>
+      <div>
+        <a href="https://www.facebook.com/MCSmm2023" target="_blank">Facebook</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+  <script src="js/auth.js"></script>
+  <script>
+    // Get event information from URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const eventTitle = urlParams.get('event') || 'MCS Event';
+    
+    // Update event information display
+    document.getElementById('event-title').textContent = eventTitle;
+    document.getElementById('event-details').textContent = `Register for: ${eventTitle}`;
+
+    // Handle participant type change
+    document.addEventListener('DOMContentLoaded', function() {
+      const cosplayerRadio = document.getElementById('cosplayer');
+      const guestRadio = document.getElementById('guest');
+      const characterGroup = document.getElementById('character-group');
+      const characterSeriesGroup = document.getElementById('character-series-group');
+      const characterNameInput = document.getElementById('character-name');
+
+      function toggleCharacterFields() {
+        if (cosplayerRadio.checked) {
+          characterGroup.classList.remove('hidden');
+          characterSeriesGroup.classList.remove('hidden');
+          characterNameInput.setAttribute('required', 'required');
+        } else {
+          characterGroup.classList.add('hidden');
+          characterSeriesGroup.classList.add('hidden');
+          characterNameInput.removeAttribute('required');
+          characterNameInput.value = '';
+          document.getElementById('character-series').value = '';
+        }
+      }
+
+      cosplayerRadio.addEventListener('change', toggleCharacterFields);
+      guestRadio.addEventListener('change', toggleCharacterFields);
+
+      // Pre-fill user information if logged in
+      const currentUser = JSON.parse(sessionStorage.getItem('currentUser') || 'null');
+      if (currentUser) {
+        document.getElementById('full-name').value = currentUser.name || '';
+        document.getElementById('email').value = currentUser.email || '';
+      }
+    });
+
+    // Handle form submission
+    document.getElementById('registration-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const submitBtn = document.getElementById('submit-btn');
+      const originalText = submitBtn.textContent;
+      
+      // Disable button and show loading
+      submitBtn.disabled = true;
+      submitBtn.textContent = '⏳ Registering...';
+
+      // Check if user is logged in
+      const currentUser = JSON.parse(sessionStorage.getItem('currentUser') || 'null');
+      
+      if (!currentUser) {
+        alert('Please log in to register for events.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalText;
+        window.location.href = 'login.html';
+        return;
+      }
+
+      // Collect form data
+      const formData = new FormData(this);
+      const registrationData = {
+        id: 'reg_' + Date.now(),
+        eventTitle: eventTitle,
+        fullName: formData.get('fullName'),
+        email: formData.get('email'),
+        contactNumber: formData.get('contactNumber'),
+        facebookProfile: formData.get('facebookProfile'),
+        participantType: formData.get('participantType'),
+        characterName: formData.get('characterName'),
+        characterSeries: formData.get('characterSeries'),
+        additionalNotes: formData.get('additionalNotes'),
+        registrationTime: new Date().toISOString(),
+        status: 'registered',
+        userId: currentUser.id
+      };
+
+      // Store registration data
+      const registrations = JSON.parse(localStorage.getItem('mcs_event_registrations') || '[]');
+      registrations.push(registrationData);
+      localStorage.setItem('mcs_event_registrations', JSON.stringify(registrations));
+
+      // Show success message
+      setTimeout(() => {
+        alert(`🎉 Registration successful for ${eventTitle}!\n\nThank you, ${registrationData.fullName}! We will contact you at ${registrationData.contactNumber}.\n\nRedirecting to events page...`);
+        
+        // Redirect back to events page
+        window.location.href = 'events.html';
+      }, 1000);
+    });
+
+    // Add form validation feedback
+    document.addEventListener('DOMContentLoaded', function() {
+      const inputs = document.querySelectorAll('input[required], select[required]');
+      
+      inputs.forEach(input => {
+        input.addEventListener('blur', function() {
+          if (this.value.trim() === '') {
+            this.style.borderColor = 'var(--error-color)';
+          } else {
+            this.style.borderColor = 'var(--gray-200)';
+          }
+        });
+        
+        input.addEventListener('input', function() {
+          if (this.value.trim() !== '') {
+            this.style.borderColor = 'var(--success-color)';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
