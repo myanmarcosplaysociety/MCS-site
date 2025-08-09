@@ -35,6 +35,7 @@ function checkAdminAccess() {
     // Initialize admin interface
     loadAdminData(currentUser);
     loadLoginData();
+    loadRegistrationData();
     setupEventListeners();
 }
 
@@ -43,9 +44,14 @@ function isAdminUser(user) {
     // For demo purposes, we'll check against specific emails or admin flag
     const adminEmails = [
         'admin@mcs.org',
-        'admin@gmail.com',
+        'admin@gmail.com', 
         'kylros2018@gmail.com'
     ];
+    
+    // Special case: check for specific admin credentials
+    if (user.email === 'kylros2018@gmail.com' || user.email === 'kylros2018') {
+        return true;
+    }
     
     return adminEmails.includes(user.email) || user.isAdmin === true;
 }
@@ -61,11 +67,12 @@ function loadAdminData(user) {
 function loadStatistics() {
     const users = JSON.parse(localStorage.getItem('mcs_users') || '[]');
     const logins = JSON.parse(localStorage.getItem('mcs_login_data') || '[]');
+    const registrations = JSON.parse(localStorage.getItem('mcs_event_registrations') || '[]');
     
     // Calculate statistics
     const totalUsers = users.length;
     const totalLogins = logins.length;
-    const gmailUsers = users.filter(user => user.loginMethod === 'gmail').length;
+    const totalRegistrations = registrations.length;
     
     // Calculate today's logins
     const today = new Date().toDateString();
@@ -77,7 +84,7 @@ function loadStatistics() {
     // Update UI
     document.getElementById('total-users').textContent = totalUsers;
     document.getElementById('total-logins').textContent = totalLogins;
-    document.getElementById('gmail-users').textContent = gmailUsers;
+    document.getElementById('total-registrations').textContent = totalRegistrations;
     document.getElementById('today-logins').textContent = todayLogins;
 }
 
@@ -144,17 +151,37 @@ function displayLoginData() {
 }
 
 function setupEventListeners() {
-    // Search functionality
+    // Search functionality for login data
     const searchInput = document.getElementById('search-input');
     searchInput.addEventListener('input', function() {
         filterData();
     });
     
-    // Method filter
+    // Method filter for login data
     const methodFilter = document.getElementById('method-filter');
     methodFilter.addEventListener('change', function() {
         filterData();
     });
+    
+    // Search functionality for registrations
+    const regSearchInput = document.getElementById('reg-search-input');
+    regSearchInput.addEventListener('input', function() {
+        filterRegistrations();
+    });
+}
+
+function filterRegistrations() {
+    const searchTerm = document.getElementById('reg-search-input').value.toLowerCase();
+    
+    filteredRegistrations = registrationData.filter(reg => {
+        return !searchTerm || 
+            (reg.eventTitle && reg.eventTitle.toLowerCase().includes(searchTerm)) ||
+            (reg.userName && reg.userName.toLowerCase().includes(searchTerm)) ||
+            (reg.userEmail && reg.userEmail.toLowerCase().includes(searchTerm)) ||
+            (reg.contactNumber && reg.contactNumber.toLowerCase().includes(searchTerm));
+    });
+    
+    displayRegistrationData();
 }
 
 function filterData() {
@@ -281,4 +308,132 @@ function addDemoData() {
 // Initialize demo data on page load
 document.addEventListener('DOMContentLoaded', function() {
     addDemoData();
+    addDemoRegistrations(); // Add demo registration data
 });
+
+// Add registration data loading and display functions
+let registrationData = [];
+let filteredRegistrations = [];
+
+function loadRegistrationData() {
+    registrationData = JSON.parse(localStorage.getItem('mcs_event_registrations') || '[]');
+    
+    // Sort by most recent first
+    registrationData.sort((a, b) => new Date(b.registrationTime) - new Date(a.registrationTime));
+    
+    filteredRegistrations = [...registrationData];
+    displayRegistrationData();
+}
+
+function displayRegistrationData() {
+    const tbody = document.getElementById('registrations-tbody');
+    tbody.innerHTML = '';
+    
+    if (filteredRegistrations.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="6" style="text-align: center; padding: 40px; color: #666;">
+                    No event registrations yet
+                </td>
+            </tr>
+        `;
+        return;
+    }
+    
+    filteredRegistrations.forEach(registration => {
+        const row = document.createElement('tr');
+        
+        // Format registration time
+        const regTime = new Date(registration.registrationTime);
+        const timeString = regTime.toLocaleString();
+        
+        row.innerHTML = `
+            <td><strong>${escapeHtml(registration.eventTitle || 'Unknown Event')}</strong></td>
+            <td>${escapeHtml(registration.userName || 'Unknown')}</td>
+            <td>${escapeHtml(registration.userEmail || 'Unknown')}</td>
+            <td>${escapeHtml(registration.contactNumber || 'Not provided')}</td>
+            <td>${timeString}</td>
+            <td>
+                <span class="method-badge method-traditional">
+                    ✅ ${registration.status || 'Registered'}
+                </span>
+            </td>
+        `;
+        
+        tbody.appendChild(row);
+    });
+}
+
+function exportRegistrations() {
+    if (filteredRegistrations.length === 0) {
+        alert('No registration data to export');
+        return;
+    }
+    
+    // Create CSV content
+    const headers = ['Event', 'Name', 'Email', 'Contact Number', 'Registration Time', 'Status'];
+    const csvContent = [
+        headers.join(','),
+        ...filteredRegistrations.map(reg => [
+            `"${(reg.eventTitle || '').replace(/"/g, '""')}"`,
+            `"${(reg.userName || '').replace(/"/g, '""')}"`,
+            `"${(reg.userEmail || '').replace(/"/g, '""')}"`,
+            `"${(reg.contactNumber || '').replace(/"/g, '""')}"`,
+            `"${reg.registrationTime || ''}"`,
+            `"${reg.status || 'Registered'}"`
+        ].join(','))
+    ].join('\n');
+    
+    // Create and download file
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    
+    if (link.download !== undefined) {
+        const url = URL.createObjectURL(blob);
+        link.setAttribute('href', url);
+        link.setAttribute('download', `mcs_registrations_${new Date().toISOString().split('T')[0]}.csv`);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+}
+
+// Add some demo registration data if none exists (for testing)
+function addDemoRegistrations() {
+    const existingData = JSON.parse(localStorage.getItem('mcs_event_registrations') || '[]');
+    
+    if (existingData.length === 0) {
+        const demoRegistrations = [
+            {
+                id: 'reg_demo1',
+                eventTitle: 'Yangon Cosplay Mega Fest',
+                userName: 'Aung Kyaw',
+                userEmail: 'aungkyaw@gmail.com',
+                contactNumber: '+95 9 123 456 789',
+                registrationTime: new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString(),
+                status: 'registered'
+            },
+            {
+                id: 'reg_demo2',
+                eventTitle: 'Mandalay Cosplay Parade',
+                userName: 'Thant Zin',
+                userEmail: 'thantzin@yahoo.com',
+                contactNumber: '+95 9 987 654 321',
+                registrationTime: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString(),
+                status: 'registered'
+            },
+            {
+                id: 'reg_demo3',
+                eventTitle: 'Anime & Game Expo',
+                userName: 'May Phyo',
+                userEmail: 'mayphyo@hotmail.com',
+                contactNumber: '+95 9 555 666 777',
+                registrationTime: new Date().toISOString(),
+                status: 'registered'
+            }
+        ];
+        
+        localStorage.setItem('mcs_event_registrations', JSON.stringify(demoRegistrations));
+    }
+}

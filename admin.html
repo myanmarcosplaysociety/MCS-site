@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Admin Panel | Myanmar Cosplay Society</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="assets/409741896_326847926966167_8324030770226370805_n.jpg">
+  <link rel="icon" href="assets/logos/409741896_326847926966167_8324030770226370805_n.jpg">
   <style>
     .admin-container {
       max-width: 1200px;
@@ -152,15 +152,14 @@
 <body>
   <header>
     <div class="container nav-flex">
-      <img src="assets/409741896_326847926966167_8324030770226370805_n.jpg" alt="MCS Logo" class="logo">
+      <img src="assets/logos/409741896_326847926966167_8324030770226370805_n.jpg" alt="MCS Logo" class="logo">
       <nav>
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="events.html">Events</a></li>
-          <li><a href="news.html">News</a></li>
           <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="login.html">Login</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="login.html">Login</a></li>
           <li><a href="admin.html" class="active">Admin</a></li>
         </ul>
       </nav>
@@ -213,12 +212,45 @@
             <div class="stat-label">Total Logins</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number" id="gmail-users">0</div>
-            <div class="stat-label">Gmail Users</div>
+            <div class="stat-number" id="total-registrations">0</div>
+            <div class="stat-label">Event Registrations</div>
           </div>
           <div class="stat-card">
             <div class="stat-number" id="today-logins">0</div>
             <div class="stat-label">Today's Logins</div>
+          </div>
+        </div>
+
+        <!-- Event Registrations Table -->
+        <div class="login-data-table" style="margin-bottom: 32px;">
+          <div class="table-header">
+            <div class="table-controls">
+              <div>
+                <h3>Event Registrations</h3>
+              </div>
+              <div>
+                <input type="text" id="reg-search-input" class="search-box" placeholder="Search registrations...">
+                <button class="export-btn" onclick="exportRegistrations()">Export Registrations</button>
+              </div>
+            </div>
+          </div>
+          
+          <div style="overflow-x: auto;">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Event</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Contact Number</th>
+                  <th>Registration Time</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="registrations-tbody">
+                <!-- Registration data will be populated by JavaScript -->
+              </tbody>
+            </table>
           </div>
         </div>
 
@@ -265,7 +297,7 @@
   <footer>
     <div class="container footer-flex">
       <div>
-        <img src="assets/409741896_326847926966167_8324030770226370805_n.jpg" alt="MCS Logo" class="footer-logo">
+        <img src="assets/logos/409741896_326847926966167_8324030770226370805_n.jpg" alt="MCS Logo" class="footer-logo">
         <span>© 2025 Myanmar Cosplay Society</span>
       </div>
       <div>

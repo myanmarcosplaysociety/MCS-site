@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Gallery | Myanmar Cosplay Society</title>
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="assets/409741896_326847926966167_8324030770226370805_n.jpg">
+  <link rel="icon" href="assets/logos/409741896_326847926966167_8324030770226370805_n.jpg">
   <style>
     .gallery-grid {
       display: flex;
@@ -56,16 +56,14 @@
 <body>
   <header>
     <div class="container nav-flex">
-      <img src="assets/409741896_326847926966167_8324030770226370805_n.jpg" alt="MCS Logo" class="logo">
+      <img src="assets/logos/409741896_326847926966167_8324030770226370805_n.jpg" alt="MCS Logo" class="logo">
       <nav>
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="events.html">Events</a></li>
-          <li><a href="news.html">News</a></li>
           <li><a href="gallery.html" class="active">Gallery</a></li>
-          <li><a href="login.html">Login</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <li><a href="admin.html">Admin</a></li>
+          <li><a href="login.html" class="login-link">Login</a></li>
         </ul>
       </nav>
     </div>
@@ -82,7 +80,7 @@
   <footer>
     <div class="container footer-flex">
       <div>
-        <img src="assets/409741896_326847926966167_8324030770226370805_n.jpg" alt="MCS Logo" class="footer-logo">
+        <img src="assets/logos/409741896_326847926966167_8324030770226370805_n.jpg" alt="MCS Logo" class="footer-logo">
         <span>© 2025 Myanmar Cosplay Society</span>
       </div>
       <div>
@@ -95,12 +93,12 @@
   <script>
     // Example photo data
     const gallery = [
-      { img: "assets/sample-photos/gallery1.jpg", caption: "Champion Cosplayer - Mega Fest 2024" },
-      { img: "assets/sample-photos/gallery2.jpg", caption: "Group Cosplay - Mandalay Parade" },
-      { img: "assets/sample-photos/gallery3.jpg", caption: "Anime Night - Naypyidaw" },
-      { img: "assets/sample-photos/event1.jpg", caption: "Judges Panel" },
-      { img: "assets/sample-photos/event2.jpg", caption: "Cosplay Parade" },
-      { img: "assets/sample-photos/event3.jpg", caption: "Backstage Moments" }
+      { img: "assets/gallery/gallery1.jpg", caption: "Champion Cosplayer - Mega Fest 2024" },
+      { img: "assets/gallery/gallery2.jpg", caption: "Group Cosplay - Mandalay Parade" },
+      { img: "assets/gallery/gallery3.jpg", caption: "Anime Night - Naypyidaw" },
+      { img: "assets/events/event1.jpg", caption: "Judges Panel" },
+      { img: "assets/events/event2.jpg", caption: "Cosplay Parade" },
+      { img: "assets/events/event3.jpg", caption: "Backstage Moments" }
     ];
     const grid = document.getElementById('gallery-grid');
     gallery.forEach(photo => {
